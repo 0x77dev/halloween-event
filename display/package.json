@@ -1,0 +1,42 @@
+{
+  "dependencies": {
+    "@react-spring/three": "^9.5.5",
+    "@react-three/cannon": "^6.4.0",
+    "@react-three/drei": "^9.36.0",
+    "@react-three/fiber": "^8.8.10",
+    "@splinetool/loader": "^0.9.128",
+    "@splinetool/r3f-spline": "^1.0.2",
+    "essentia.js": "^0.1.3",
+    "events": "^3.3.0",
+    "lamina": "^1.1.23",
+    "leva": "^0.9.31",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-new-window": "^0.2.2",
+    "react-spring": "^9.5.5",
+    "three": "^0.145.0",
+    "three-stdlib": "^2.17.3",
+    "webmidi": "^3.0.21"
+  },
+  "devDependencies": {
+    "@types/events": "^3",
+    "@types/lodash": "^4",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@types/three": "^0.144.0",
+    "@vitejs/plugin-react": "^2.1.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.1.0"
+  },
+  "license": "GPL-3.0",
+  "name": "display",
+  "private": true,
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}

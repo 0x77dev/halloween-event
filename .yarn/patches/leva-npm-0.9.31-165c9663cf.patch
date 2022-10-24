@@ -1,0 +1,57 @@
+diff --git a/dist/vector-plugin-678012fe.cjs.prod.js b/dist/vector-plugin-678012fe.cjs.prod.js
+index 7423315425c49b3f25e2eef636ec1d88c4f63191..f16a6d9020eca7d69b0c3b9c79dac2e639efc98f 100644
+--- a/dist/vector-plugin-678012fe.cjs.prod.js
++++ b/dist/vector-plugin-678012fe.cjs.prod.js
+@@ -513,10 +513,10 @@ function sanitizeValue({
+     throw new ValueError(`The value \`${newValue}\` did not result in a correct value.`, value, e);
+   }
+ 
+-  if (lite.dequal(sanitizedNewValue, value)) {
+-    throw new ValueError(`The value \`${newValue}\` did not result in a value update, which remained the same: \`${value}\`.
+-        You can ignore this warning if this is the intended behavior.`, value);
+-  }
++  // if (lite.dequal(sanitizedNewValue, value)) {
++  //   throw new ValueError(`The value \`${newValue}\` did not result in a value update, which remained the same: \`${value}\`.
++  //       You can ignore this warning if this is the intended behavior.`, value);
++  // }
+ 
+   return sanitizedNewValue;
+ }
+diff --git a/dist/vector-plugin-89449808.cjs.dev.js b/dist/vector-plugin-89449808.cjs.dev.js
+index 7423315425c49b3f25e2eef636ec1d88c4f63191..f16a6d9020eca7d69b0c3b9c79dac2e639efc98f 100644
+--- a/dist/vector-plugin-89449808.cjs.dev.js
++++ b/dist/vector-plugin-89449808.cjs.dev.js
+@@ -513,10 +513,10 @@ function sanitizeValue({
+     throw new ValueError(`The value \`${newValue}\` did not result in a correct value.`, value, e);
+   }
+ 
+-  if (lite.dequal(sanitizedNewValue, value)) {
+-    throw new ValueError(`The value \`${newValue}\` did not result in a value update, which remained the same: \`${value}\`.
+-        You can ignore this warning if this is the intended behavior.`, value);
+-  }
++  // if (lite.dequal(sanitizedNewValue, value)) {
++  //   throw new ValueError(`The value \`${newValue}\` did not result in a value update, which remained the same: \`${value}\`.
++  //       You can ignore this warning if this is the intended behavior.`, value);
++  // }
+ 
+   return sanitizedNewValue;
+ }
+diff --git a/dist/vector-plugin-fa777510.esm.js b/dist/vector-plugin-fa777510.esm.js
+index 92bc146d9d0877a687ccea2b8cc871abe7a2b6aa..96a5e72fda2597263836dbac968b6f13454d0991 100644
+--- a/dist/vector-plugin-fa777510.esm.js
++++ b/dist/vector-plugin-fa777510.esm.js
+@@ -484,10 +484,10 @@ function sanitizeValue({
+     throw new ValueError(`The value \`${newValue}\` did not result in a correct value.`, value, e);
+   }
+ 
+-  if (dequal(sanitizedNewValue, value)) {
+-    throw new ValueError(`The value \`${newValue}\` did not result in a value update, which remained the same: \`${value}\`.
+-        You can ignore this warning if this is the intended behavior.`, value);
+-  }
++  // if (dequal(sanitizedNewValue, value)) {
++  //   throw new ValueError(`The value \`${newValue}\` did not result in a value update, which remained the same: \`${value}\`.
++  //       You can ignore this warning if this is the intended behavior.`, value);
++  // }
+ 
+   return sanitizedNewValue;
+ }
