@@ -1,0 +1,3 @@
+[submodule "lights/lib/ESP-Dmx"]
+	path = lights/lib/ESP-Dmx
+	url = https://github.com/Rickgg/ESP-Dmx

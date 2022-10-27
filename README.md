@@ -6,7 +6,9 @@ _Caution: source code is not clean, it missing a couple of scenes and it might b
 
 ## Quick overview
 
-The visual part is handled by [react-three-fiber](https://github.com/pmndrs/react-three-fiber) and sound analysis by [Essentia.js](https://www.npmjs.com/package/essentia.js), also live tuning and controls are handled by [WebMIDI](https://github.com/djipco/webmidi) which is intended to be used with [Arturia Beatstep Sequencer](https://www.arturia.com/products/beatstep/resources). The plan is to extend project with DMX controlled lights support, remote WebMIDI and maybe crowd tracking using Tensorflow.js.
+The visual part is handled by [react-three-fiber](https://github.com/pmndrs/react-three-fiber) and sound analysis by [Essentia.js](https://www.npmjs.com/package/essentia.js), also live tuning and controls are handled by [WebMIDI](https://github.com/djipco/webmidi) which is intended to be used with [Arturia Beatstep Sequencer](https://www.arturia.com/products/beatstep/resources). The plan is to extend project with remote WebMIDI and maybe crowd tracking using Tensorflow.js.
+
+DMX lights are controlled by ESP8266 with ESP-Dmx and ArtNet protocol libraries.
 
 ## Getting started
 
