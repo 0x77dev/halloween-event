@@ -4,7 +4,7 @@ import { isEqual } from "lodash";
 import { useEffect, useState } from "react";
 import { useMultiMidiStates as useMidiStates } from "../control-surface/midi";
 import { ProcessingResult } from "./interfaces";
-import processorUrl from "./processor.ts?url";
+import processorUrl from "./essentia.ts?url";
 
 const createWorkletNode = async (
   context: BaseAudioContext,
@@ -16,16 +16,16 @@ const createWorkletNode = async (
 }
 
 const audioCtx = new AudioContext();
-const processor = await createWorkletNode(
+const essentia = await createWorkletNode(
   audioCtx,
-  "processor",
+  "essentia",
   processorUrl
 );
 
 audioCtx.addEventListener('statechange', async (ev) => {
   const mic = await navigator.mediaDevices.getUserMedia({ audio: true });
   const micNode = audioCtx.createMediaStreamSource(mic);
-  micNode.connect(processor)
+  micNode.connect(essentia)
 })
 
 const resume = () => {
@@ -42,14 +42,14 @@ const getPosFromMiddle = (input: number, multiply = 1) => {
 }
 
 const events = new EventEmitter()
-processor.port.onmessage = (e: MessageEvent<ProcessingResult>) => {
+essentia.port.onmessage = (e: MessageEvent<ProcessingResult>) => {
   events.emit('result', e.data)
 }
 
 export const useAudio = () => {
   // @ts-ignore
   const [res, setRes] = useControls('audio', () => {
-    const init = { value: 0, transient: false, min: -1, max: 10, step: 0.01 }
+    const init = { value: 0, transient: false, min: -1, max: 20, step: 0.01 }
 
     return {
       rms: init,
@@ -84,9 +84,9 @@ export const useAudio = () => {
       const master = getPosFromMiddle(m1)
 
       const data = {
-        rms: (res.rms + getPosFromMiddle(s1) + master) + (p1 * 10),
-        energy: (res.energy + getPosFromMiddle(s2) + master) + (p2 * 10),
-        loudness: (res.loudness + getPosFromMiddle(s3) + master) + (p3 * 10)
+        rms: Math.max(0, res.rms),
+        energy: Math.max(0, (res.energy + getPosFromMiddle(s2) + master) + (p2 * 10)),
+        loudness: Math.max(0, (res.loudness + getPosFromMiddle(s3) + master) + (p3 * 10))
       }
 
       if (isEqual(prev, res)) return;

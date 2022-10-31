@@ -6,5 +6,13 @@ export default defineConfig({
   plugins: [react()],
   build: {
     target: 'chrome99',
+  },
+  server: {
+    proxy: {
+      '/socket.io': {
+        target: 'http://localhost:1447',
+        ws: true
+      }
+    }
   }
 })

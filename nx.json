@@ -1,0 +1,21 @@
+{
+  "defaultBase": "master",
+  "targetDefaults": {
+    "build": {
+      "outputs": [
+        "display/dist",
+        "lights/.pio"
+      ]
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheableOperations": [
+          "build"
+        ]
+      },
+      "runner": "nx/tasks-runners/default"
+    }
+  }
+}

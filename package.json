@@ -9,5 +9,12 @@
   "packageManager": "yarn@3.2.4",
   "resolutions": {
     "leva": "patch:leva@npm%3A0.9.31#./.yarn/patches/leva-npm-0.9.31-165c9663cf.patch"
+  },
+  "scripts": {
+    "build": "yarn exec nx run-many --target=build",
+    "dev": "yarn exec nx run-many --target=dev"
+  },
+  "devDependencies": {
+    "nx": "15.0.3"
   }
 }

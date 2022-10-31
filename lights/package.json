@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "socket.io-client": "^4.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "name": "lights",
+  "packageManager": "yarn@3.2.4",
+  "scripts": {
+    "build": "pio run",
+    "dev": "nodemon",
+    "install": "pio lib install",
+    "monitor": "pio device monitor",
+    "start": "pio run --target upload"
+  }
+}

@@ -5,8 +5,8 @@
  
 DMXESPSerial dmx;
 
-const char *ssid = "prodigy";
-const char *password = "firestarter";
+const char *ssid = "Noden";
+const char *password = "syntheos";
 
 WiFiUDP UdpSend;
 ArtnetWifi artnet;

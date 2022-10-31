@@ -2,7 +2,7 @@
 
 This is visual performance toolkit built for [Halloween event @ Blivande (Oct. 29th – 30th, 2022)](https://tickets.blivande.com/on/halloween001).
 
-_Caution: source code is not clean, it missing a couple of scenes and it might be dirty._
+_Caution: source code is not clean because it contains live coding backups, also it missing a couple of scenes and it might be dirty._
 
 ## Quick overview
 
@@ -16,7 +16,9 @@ DMX lights are controlled by ESP8266 with ESP-Dmx and ArtNet protocol libraries.
 
 - Node.js (`16.x` / `lts/*`)
 - Yarn
-- [Arturia Beatstep Sequencer](https://www.arturia.com/products/beatstep/resources) (hardware component, might be optional at the end but required to start the project now)
+- PlatformIO
+- ESP8266 -> MAX485 -> DMX (hardware component)
+- [Arturia Beatstep Sequencer](https://www.arturia.com/products/beatstep/resources) (hardware component)
 - Git and [Git LFS](https://git-lfs.github.com)
 - Latest Chrome or equivalent abilities browser
 
@@ -37,7 +39,6 @@ yarn install
 3. Start the project
 
 ```bash
-cd display
 yarn dev
 ```
 

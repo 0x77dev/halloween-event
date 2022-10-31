@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/nodemon.json",
+  "delay": 2500,
+  "exec": "yarn start",
+  "ext": "cpp,h,c",
+  "watch": [
+    "src/",
+    "lib/",
+    ".pio/libdeps"
+  ]
+}

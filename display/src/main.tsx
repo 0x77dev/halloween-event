@@ -8,23 +8,28 @@ import "./services/control-surface/midi";
 import { OrbitControls } from "@react-three/drei";
 import { AsciiRenderer } from "./components/ascii-render";
 import { useMultiMidiStates } from "./services/control-surface/midi";
+import { Leva } from "leva";
+import "./services/lights/artnet";
+import { useAudio } from "./services/audio";
 
 const Root = () => {
-  const [p16, p8] = useMultiMidiStates([
-    [160, 43],
+  const [p8] = useMultiMidiStates([
     [160, 51],
   ]);
 
-  const invert = p16 < 0.5;
-  const ascii = p8 > 0.5;
+  const audio = useAudio();
+
+  const invert = audio.loudness > 18 || p8 > 0.9;
+  const ascii = audio.loudness > 18 || p8 > 0.1;
 
   return (
     <React.StrictMode>
       <Suspense fallback={null}>
+        <Leva hideCopyButton />
         <Canvas shadows flat linear>
           <App />
           <OrbitControls />
-          {ascii && <AsciiRenderer invert={invert} />}
+          {ascii && <AsciiRenderer invert={!invert} />}
         </Canvas>
       </Suspense>
     </React.StrictMode>

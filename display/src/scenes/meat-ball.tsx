@@ -1,35 +1,45 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Environment, OrthographicCamera } from "@react-three/drei";
 import useSpline from "@splinetool/r3f-spline";
 import { useFrame, MeshProps } from "@react-three/fiber";
 import { useAudio } from "../services/audio";
-import { useMidiState } from "../services/control-surface/midi";
 import { Rig } from "../components/rig";
 import { config, useSpring, animated } from "@react-spring/three";
 import { Mesh } from "three";
+import { setArtNet } from "../services/lights/artnet";
+import * as chroma from "chroma-js";
+import { setRow } from "../services/lights/controls";
+import { useMidiState } from "../services/control-surface/midi";
 
-const Sphere = (props: MeshProps) => {
+const Sphere: React.FC = () => {
   const audio = useAudio();
   const sphere = React.useRef<Mesh>();
-  const { nodes, materials } = useSpline(
-    "/meatball.splinecode"
-  );
+  const { nodes, materials } = useSpline("/meatball.splinecode");
+  const scaleOverride =  useMidiState(176, 10)
 
   const { scale } = useSpring({
-    scale: 1 + audio.energy / 20,
+    scale: 1 + (audio.energy+scaleOverride*10) / 15,
     config: {
       ...config.wobbly,
-      mass: 0.01,
+      mass: 0.015,
     },
   });
 
   useFrame(({ clock }) => {
     const a = clock.getElapsedTime();
-    if(!sphere.current) return
-    sphere.current.rotation.x = (a/5)+(audio.rms / 40);
-    sphere.current.rotation.y = (a/5)+(audio.rms / 40);
-    sphere.current.rotation.z = (a/5)+(audio.rms / 40);
+    if (!sphere.current) return;
+    sphere.current.rotation.x = (a / 4) + (audio.rms * 1.5);
+    sphere.current.rotation.y = (a / 4) + (audio.rms * 2);
+    sphere.current.rotation.z = (a / 4) + (audio.rms * 2);
   });
+
+  useEffect(() => {
+    const [r, g, b] = chroma("red")
+      .rgb();
+
+    setRow("crowd", r/5, 0, 0, 0, 0, 0);
+    setRow("scene", 0, 0, 0, 0, 0, 0);
+  }, [audio]);
 
   return (
     <group dispose={null}>
@@ -43,7 +53,7 @@ const Sphere = (props: MeshProps) => {
         shadow-camera-near={100}
         shadow-camera-far={2500}
         color="#fed79d"
-        position={[292.92, 305.86, 0]}
+        position={[292.92+audio.loudness, 305.86, 0+audio.rms]}
       />
       <directionalLight
         name="Directional Light"
@@ -67,7 +77,7 @@ const Sphere = (props: MeshProps) => {
         castShadow
         receiveShadow
         ref={sphere as any}
-        position={[0,-15,0]}
+        position={[0, -15, 0]}
       />
       <OrthographicCamera
         name="1"
@@ -90,7 +100,6 @@ const Sphere = (props: MeshProps) => {
 export const MeatBall: React.FC = () => {
   return (
     <>
-      <color attach="background" args={["#000000"]} />
       <Sphere />
       <Environment preset="warehouse" />
       <Rig />
